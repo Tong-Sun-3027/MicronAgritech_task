@@ -16,7 +16,6 @@ npm install morgan
 npm install mysql
 npm install nodemon
 npm install cookie-parser
-npm install jsonwebtoken
 ```
 
 #### Get start
