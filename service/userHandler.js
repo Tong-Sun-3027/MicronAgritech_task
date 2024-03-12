@@ -24,12 +24,6 @@ queryTnfoByEmail = (req, res) =>{
 
 // login 
 login = (req, res) => {
-    // simulate an error
-    // try {
-    //     throw createError(404, 'This is a simulated 404 error');
-    // } catch (error) {
-    //     next(error);
-    // }
     if(!req.body.email || !req.body.password) {
         res.send({'status': 400, "msg": "either email or password field is empty" });
     }
@@ -94,7 +88,7 @@ updateInfo = (req, res)=>{
     }else{
         const hashPass = cryptoUtil.hashPassword(password);
         userDao.updateInfo(email, hashPass).then(result => {
-            if(result && result.length > 0){
+            if(result.affectedRows > 0){
                 blacklist.addToBlacklist(req.headers.authorization)
                 res.send({status:200, msg: 'password updated, please login: '+ login_link});
             }else{
